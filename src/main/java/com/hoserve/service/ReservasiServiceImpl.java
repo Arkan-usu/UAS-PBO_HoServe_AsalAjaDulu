@@ -1,5 +1,6 @@
 package com.hoserve.service;
 
+import com.hoserve.client.util.DtoMapper;
 import com.hoserve.dto.request.ReservasiRequest;
 import com.hoserve.dto.response.ReservasiResponse;
 import com.hoserve.entity.Dokter;
@@ -13,7 +14,7 @@ import com.hoserve.repository.DokterRepository;
 import com.hoserve.repository.PasienRepository;
 import com.hoserve.repository.PoliklinikRepository;
 import com.hoserve.repository.ReservasiRepository;
-import com.hoserve.util.DtoMapper;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

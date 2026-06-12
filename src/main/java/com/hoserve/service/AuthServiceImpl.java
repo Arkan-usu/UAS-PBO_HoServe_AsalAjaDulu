@@ -1,5 +1,6 @@
 package com.hoserve.service;
 
+import com.hoserve.client.util.DtoMapper;
 import com.hoserve.dto.request.LoginRequest;
 import com.hoserve.dto.request.RegisterRequest;
 import com.hoserve.dto.response.LoginResponse;
@@ -13,7 +14,7 @@ import com.hoserve.repository.AdminRepository;
 import com.hoserve.repository.DokterRepository;
 import com.hoserve.repository.PasienRepository;
 import com.hoserve.security.JwtTokenProvider;
-import com.hoserve.util.DtoMapper;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

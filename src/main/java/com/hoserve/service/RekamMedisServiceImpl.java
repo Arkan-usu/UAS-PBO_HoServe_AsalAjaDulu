@@ -1,5 +1,6 @@
 package com.hoserve.service;
 
+import com.hoserve.client.util.DtoMapper;
 import com.hoserve.dto.request.RekamMedisRequest;
 import com.hoserve.dto.response.RekamMedisResponse;
 import com.hoserve.entity.Dokter;
@@ -11,7 +12,7 @@ import com.hoserve.exception.ResourceNotFoundException;
 import com.hoserve.repository.DokterRepository;
 import com.hoserve.repository.RekamMedisRepository;
 import com.hoserve.repository.ReservasiRepository;
-import com.hoserve.util.DtoMapper;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
