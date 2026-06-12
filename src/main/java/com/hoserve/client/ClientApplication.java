@@ -28,19 +28,29 @@ public class ClientApplication extends Application {
             FXMLLoader loader = new FXMLLoader(ClientApplication.class.getResource(fxmlPath));
             Parent root = loader.load();
             
-            Scene scene = new Scene(root, width, height);
+            Scene currentScene = primaryStage.getScene();
             
-            // Load global CSS stylesheet
-            var cssResource = ClientApplication.class.getResource("/client/css/style.css");
-            if (cssResource != null) {
-                scene.getStylesheets().add(cssResource.toExternalForm());
+            if (currentScene != null) {
+                // Jika aplikasi sudah terbuka, cukup ganti isinya (root) saja.
+                // Ini akan mempertahankan ukuran layar dan posisi window saat ini.
+                currentScene.setRoot(root);
             } else {
-                System.err.println("Warning: Global CSS stylesheet not found!");
+                // Jika ini adalah pertama kalinya aplikasi dibuka (saat start)
+                Scene scene = new Scene(root, width, height);
+                
+                // Load global CSS stylesheet
+                var cssResource = ClientApplication.class.getResource("/client/css/style.css");
+                if (cssResource != null) {
+                    scene.getStylesheets().add(cssResource.toExternalForm());
+                } else {
+                    System.err.println("Warning: Global CSS stylesheet not found!");
+                }
+                
+                primaryStage.setScene(scene);
+                primaryStage.centerOnScreen();
             }
             
             primaryStage.setTitle(title);
-            primaryStage.setScene(scene);
-            primaryStage.centerOnScreen();
             primaryStage.show();
         } catch (Exception e) {
             System.err.println("Error changing scene to: " + fxmlPath);
