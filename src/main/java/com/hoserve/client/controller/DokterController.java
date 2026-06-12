@@ -25,6 +25,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 /**
  * Controller for the Doctor Dashboard Portal.
@@ -181,6 +184,16 @@ public class DokterController {
 
         // 5. Fetch Queue
         loadQueueData();
+
+        // 6. Auto-Refresh (Polling) setiap 10 detik
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+            // Hanya refresh jika panel antrean sedang dibuka/dilihat oleh dokter
+            if (panelAntrean.isVisible()) {
+                loadQueueData();
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     // === Navigation Handlers ===
