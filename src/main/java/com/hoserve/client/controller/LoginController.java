@@ -94,6 +94,11 @@ public class LoginController {
         ClientApplication.changeScene("/client/fxml/register.fxml", "HoServe - Registrasi Pasien Baru", 850, 600);
     }
 
+    @FXML
+    void handleBackToHome(ActionEvent event) {
+        ClientApplication.changeScene("/client/fxml/home.fxml", "HoServe - Clinic Management System", 1024, 768);
+    }
+
     private void navigateToDashboard(Role role) {
         if (role == Role.ADMIN) {
             ClientApplication.changeScene("/client/fxml/admin_dashboard.fxml", "HoServe - Panel Administrasi", 1024, 768);

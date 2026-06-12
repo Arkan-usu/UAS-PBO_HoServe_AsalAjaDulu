@@ -107,5 +107,6 @@
             </VBox>
          </children>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#handleBackToHome" styleClass="sidebar-btn" text="&lt; Kembali ke Beranda" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>

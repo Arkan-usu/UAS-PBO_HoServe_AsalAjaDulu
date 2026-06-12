@@ -16,8 +16,8 @@ public class ClientApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
-        // Start on the login screen
-        changeScene("/client/fxml/login.fxml", "HoServe - Clinic Management System", 850, 600);
+        // Start on the home screen
+        changeScene("/client/fxml/home.fxml", "HoServe - Clinic Management System", 1024, 768);
     }
 
     /**

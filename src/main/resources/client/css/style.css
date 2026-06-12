@@ -33,6 +33,12 @@
     -fx-border-color: #00d2ff;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 210, 255, 0.4), 6, 0.0, 0, 0);
 }
+.text-area {
+    -fx-text-fill: black;
+}
+.text-area .content {
+    -fx-background-color: transparent;
+}
 
 /* Combo Box and Date Picker */
 .combo-box, .date-picker {

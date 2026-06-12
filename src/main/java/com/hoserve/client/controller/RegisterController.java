@@ -132,4 +132,9 @@ public class RegisterController {
     void handleGoToLogin(ActionEvent event) {
         ClientApplication.changeScene("/client/fxml/login.fxml", "HoServe - Clinic Management System", 850, 600);
     }
+
+    @FXML
+    void handleBackToHome(ActionEvent event) {
+        ClientApplication.changeScene("/client/fxml/home.fxml", "HoServe - Clinic Management System", 1024, 768);
+    }
 }
