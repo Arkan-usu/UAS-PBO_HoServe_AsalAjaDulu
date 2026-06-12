@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hoserve.client.controller.DokterController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <!-- SIDEBAR -->
+            <VBox prefWidth="240.0" spacing="10.0" styleClass="glass-card" HBox.hgrow="NEVER">
+               <children>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Label styleClass="title-header" text="HoServe Dokter">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="title-sub" text="Portal Medis Dokter" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="20.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <Button fx:id="btnNavAntrean" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPanelAntrean" styleClass="sidebar-btn, sidebar-btn-active" text="Antrean Hari Ini" />
+                  <Button fx:id="btnNavHistory" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPanelHistory" styleClass="sidebar-btn" text="Riwayat Medis Pasien" />
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" styleClass="sidebar-btn" text="Logout" textFill="#ff416c">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+            
+            <!-- MAIN CONTENT AREA -->
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- HEADER BAR -->
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label fx:id="lblMenuTitle" styleClass="title-header" text="Antrean Pasien Hari Ini" />
+                              <Label fx:id="lblWelcomeMessage" styleClass="title-sub" text="Selamat bertugas, dr." />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  
+                  <!-- PANELS STACK -->
+                  <StackPane VBox.vgrow="ALWAYS">
+                     <children>
+                        
+                        <!-- PANEL ANTREAN -->
+                        <HBox fx:id="panelAntrean" spacing="20.0">
+                           <children>
+                              <!-- Queue Table (Left) -->
+                              <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="title-sub" text="Pilih pasien dari tabel untuk mulai memeriksa:" />
+                                          <Button mnemonicParsing="false" onAction="#refreshQueue" styleClass="btn-primary" style="-fx-padding: 6px 12px; -fx-font-size: 11px;" text="Refresh Antrean" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="tableAntrean" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="colAntreanNo" prefWidth="80.0" text="No. Antrean" />
+                                        <TableColumn fx:id="colAntreanNama" prefWidth="150.0" text="Nama Pasien" />
+                                          <TableColumn fx:id="colAntreanKeluhan" prefWidth="180.0" text="Keluhan" />
+                                          <TableColumn fx:id="colAntreanStatus" prefWidth="110.0" text="Status" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- EMR Form (Right) -->
+                              <VBox prefWidth="360.0" spacing="12.0" styleClass="glass-card" HBox.hgrow="NEVER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                 </padding>
+                                 <children>
+                                    <Label styleClass="label-form" text="INPUT REKAM MEDIS PASIEN" textFill="#38ef7d" />
+                                    
+                                    <VBox prefHeight="1.0" style="-fx-background-color: rgba(255,255,255,0.15);" />
+                                    
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label styleClass="label-form" text="NAMA PASIEN" />
+                                          <Label fx:id="lblFormPasienNama" text="Belum memilih pasien" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label styleClass="label-form" text="KELUHAN UTAMA" />
+                                          <Label fx:id="lblFormKeluhan" text="-" textFill="#cbd5e1" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox fx:id="vboxFormFields" disable="true" spacing="10.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <VBox spacing="4.0">
+                                             <children>
+                                                <Label styleClass="label-form" text="DIAGNOSIS (Wajib)" />
+                                                <TextField fx:id="txtDiagnosis" promptText="Masukkan hasil diagnosis" styleClass="text-input" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="4.0">
+                                             <children>
+                                                <Label styleClass="label-form" text="TINDAKAN MEDIS" />
+                                                <TextField fx:id="txtTindakan" promptText="Suntik, perban, dll" styleClass="text-input" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="4.0">
+                                             <children>
+                                                <Label styleClass="label-form" text="RESEP OBAT" />
+                                                <TextArea fx:id="txtResep" prefHeight="70.0" promptText="Nama obat &amp; dosis pemakaian" styleClass="text-input" wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="4.0">
+                                             <children>
+                                                <Label styleClass="label-form" text="CATATAN LAINNYA" />
+                                                <TextArea fx:id="txtCatatan" prefHeight="60.0" promptText="Catatan tambahan..." styleClass="text-input" wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <Label fx:id="lblEmrError" textFill="#ff416c" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="11.0" />
+                                       </font>
+                                    </Label>
+                                    
+                                    <Button fx:id="btnSaveEmr" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveEmr" prefHeight="40.0" styleClass="btn-success" text="SIMPAN REKAM MEDIS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        
+                        <!-- PANEL HISTORY (SEARCH MEDICAL RECORD) -->
+                        <VBox fx:id="panelHistory" spacing="15.0" visible="false">
+                           <children>
+                              <!-- Search controls -->
+                              <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <Label styleClass="label-form" text="PILIH PASIEN:" />
+                                    <ComboBox fx:id="cbSearchPasien" onAction="#handleSearchPasienSelect" prefWidth="250.0" styleClass="combo-box" />
+                                 </children>
+                              </HBox>
+                              
+                              <!-- History Table -->
+                              <TableView fx:id="tableMedis" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                  <TableColumn fx:id="colMedisTanggal" prefWidth="140.0" text="Tanggal Periksa" />
+                                  <TableColumn fx:id="colMedisKeluhan" prefWidth="180.0" text="Keluhan" />
+                                    <TableColumn fx:id="colMedisDiagnosis" prefWidth="180.0" text="Diagnosis" />
+                                    <TableColumn fx:id="colMedisTindakan" prefWidth="120.0" text="Tindakan" />
+                                    <TableColumn fx:id="colMedisResep" prefWidth="140.0" text="Resep Obat" />
+                                    <TableColumn fx:id="colMedisCatatan" prefWidth="150.0" text="Catatan Dokter" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

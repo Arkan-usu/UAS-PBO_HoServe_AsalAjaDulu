@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hoserve.client.controller.PasienController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <!-- SIDEBAR -->
+            <VBox prefWidth="240.0" spacing="10.0" styleClass="glass-card" HBox.hgrow="NEVER">
+               <children>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Label styleClass="title-header" text="HoServe Pasien">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="title-sub" text="Portal Pasien Online" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" top="20.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <Button fx:id="btnNavBooking" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPanelBooking" styleClass="sidebar-btn, sidebar-btn-active" text="Buat Reservasi Baru" />
+                  <Button fx:id="btnNavHistory" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPanelHistory" styleClass="sidebar-btn" text="Riwayat Kunjungan" />
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" styleClass="sidebar-btn" text="Logout" textFill="#ff416c">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+            
+            <!-- MAIN CONTENT AREA -->
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- HEADER BAR -->
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label fx:id="lblMenuTitle" styleClass="title-header" text="Buat Reservasi Baru" />
+                              <Label fx:id="lblWelcomeMessage" styleClass="title-sub" text="Selamat datang, Pasien" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  
+                  <!-- PANELS STACK -->
+                  <StackPane VBox.vgrow="ALWAYS">
+                     <children>
+                        
+                        <!-- PANEL BOOKING -->
+                        <HBox fx:id="panelBooking" spacing="25.0">
+                           <children>
+                              <!-- Booking Form (Left) -->
+                              <VBox prefWidth="440.0" spacing="15.0" styleClass="glass-card" HBox.hgrow="NEVER">
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                                 <children>
+                                    <Label styleClass="label-form" text="FORM RESERVASI ONLINE" textFill="#00d2ff">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    
+                                    <VBox spacing="6.0">
+                                       <children>
+                                          <Label styleClass="label-form" text="1. PILIH POLIKLINIK" />
+                                          <ComboBox fx:id="cbPoliklinik" maxWidth="1.7976931348623157E308" onAction="#handlePoliklinikSelect" prefHeight="40.0" styleClass="combo-box" />
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="6.0">
+                                       <children>
+                                          <Label styleClass="label-form" text="2. PILIH DOKTER" />
+                                          <ComboBox fx:id="cbDokter" maxWidth="1.7976931348623157E308" onAction="#handleDokterSelect" prefHeight="40.0" styleClass="combo-box" />
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="6.0">
+                                       <children>
+                                          <Label styleClass="label-form" text="3. TENTUKAN TANGGAL KUNJUNGAN" />
+                                          <DatePicker fx:id="dpTanggal" maxWidth="1.7976931348623157E308" prefHeight="40.0" promptText="Pilih tanggal periksa" styleClass="date-picker" />
+                                       </children>
+                                    </VBox>
+                                    
+                                    <VBox spacing="6.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="label-form" text="4. JELASKAN KELUHAN ANDA" />
+                                          <TextArea fx:id="txtKeluhan" prefHeight="100.0" promptText="Tuliskan keluhan atau gejala sakit yang dirasakan..." styleClass="text-input" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    
+                                    <Label fx:id="lblBookingError" textFill="#ff416c" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    
+                                    <Button fx:id="btnBook" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBuatReservasi" prefHeight="45.0" styleClass="btn-primary" text="AMBIL NOMOR ANTREAN" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Info & Receipt Card (Right) -->
+                              <VBox spacing="20.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox fx:id="vboxReceipt" spacing="20.0" styleClass="glass-card" visible="false">
+                                       <padding>
+                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                                       </padding>
+                                       <children>
+                                          <Label styleClass="title-header" text="Tiket Antrean Anda" textFill="#38ef7d" />
+                                          <VBox prefHeight="1.0" style="-fx-background-color: rgba(255,255,255,0.15);" />
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label styleClass="title-sub" text="Dokter Pemeriksa" />
+                                                      <Label fx:id="lblReceiptDokter" text="Dr. Sarah" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="lblReceiptPoliklinik" text="Poliklinik Umum" textFill="#00d2ff">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefWidth="120.0" styleClass="glass-card" style="-fx-background-color: rgba(0, 210, 255, 0.1);">
+                                                   <children>
+                                                      <Label text="No. Antrean" textFill="#cbd5e1">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="lblReceiptAntrean" text="05" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="40.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <VBox spacing="8.0">
+                                             <children>
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefWidth="150.0" styleClass="title-sub" text="Tanggal Periksa:" />
+                                                      <Label fx:id="lblReceiptTanggal" text="Senin, 15 Juni 2026" textFill="WHITE" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefWidth="150.0" styleClass="title-sub" text="Status Antrean:" />
+                                                      <Label fx:id="lblReceiptStatus" text="MENUNGGU" textFill="#f59e0b">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefWidth="150.0" styleClass="title-sub" text="Keluhan:" />
+                                                      <Label fx:id="lblReceiptKeluhan" text="Demam dan flu sejak kemarin" textFill="WHITE" wrapText="true" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Label styleClass="title-sub" text="Harap datang 15 menit sebelum jam praktek dimulai." textFill="#a0aab2" wrapText="true">
+                                             <font>
+                                                <Font name="System Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    
+                                    <!-- Informational Card -->
+                                    <VBox spacing="15.0" styleClass="glass-card" VBox.vgrow="ALWAYS">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                       <children>
+                                          <Label styleClass="title-sub" text="Petunjuk Reservasi:" textFill="#00d2ff">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="1. Pilih Poliklinik tujuan Anda terlebih dahulu." textFill="WHITE" />
+                                          <Label text="2. Pilih Dokter spesialis yang bertugas pada poliklinik tersebut." textFill="WHITE" />
+                                          <Label text="3. Tentukan tanggal periksa (Senin s.d. Jumat)." textFill="WHITE" />
+                                          <Label text="4. Tuliskan keluhan secara singkat dan jelas." textFill="WHITE" />
+                                          <Label text="5. Klik tombol 'Ambil Nomor Antrean' untuk memproses booking." textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        
+                        <!-- PANEL HISTORY -->
+                        <VBox fx:id="panelHistory" spacing="15.0" visible="false">
+                           <children>
+                              <TableView fx:id="tableHistory" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                  <TableColumn fx:id="colHistoryId" prefWidth="70.0" text="ID Booking" />
+                                  <TableColumn fx:id="colHistoryTanggal" prefWidth="130.0" text="Tanggal Periksa" />
+                                    <TableColumn fx:id="colHistoryDokter" prefWidth="150.0" text="Nama Dokter" />
+                                    <TableColumn fx:id="colHistoryPoliklinik" prefWidth="150.0" text="Poliklinik" />
+                                    <TableColumn fx:id="colHistoryKeluhan" prefWidth="200.0" text="Keluhan" />
+                                    <TableColumn fx:id="colHistoryAntrean" prefWidth="80.0" text="No. Antrean" />
+                                    <TableColumn fx:id="colHistoryStatus" prefWidth="120.0" text="Status" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
