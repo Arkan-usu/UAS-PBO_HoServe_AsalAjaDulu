@@ -1,12 +1,13 @@
 package com.hoserve.service;
 
+import com.hoserve.client.util.DtoMapper;
 import com.hoserve.dto.response.DokterResponse;
 import com.hoserve.dto.response.PoliklinikResponse;
 import com.hoserve.entity.Dokter;
 import com.hoserve.exception.ResourceNotFoundException;
 import com.hoserve.repository.DokterRepository;
 import com.hoserve.repository.PoliklinikRepository;
-import com.hoserve.util.DtoMapper;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

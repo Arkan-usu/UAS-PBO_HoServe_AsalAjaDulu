@@ -3,6 +3,7 @@ package com.hoserve.client.controller;
 import com.hoserve.client.ClientApplication;
 import com.hoserve.client.http.ClientSession;
 import com.hoserve.client.http.HttpClientUtil;
+import com.hoserve.client.util.AlertUtil; // 1. IMPORT UTILITAS ALERT KAMU
 import com.hoserve.dto.request.LoginRequest;
 import com.hoserve.dto.response.ApiResponse;
 import com.hoserve.dto.response.LoginResponse;
@@ -20,17 +21,10 @@ import javafx.scene.control.TextField;
  */
 public class LoginController {
 
-    @FXML
-    private TextField txtUsername;
-
-    @FXML
-    private PasswordField txtPassword;
-
-    @FXML
-    private Label lblError;
-
-    @FXML
-    private Button btnLogin;
+    @FXML private TextField txtUsername;
+    @FXML private PasswordField txtPassword;
+    @FXML private Label lblError;
+    @FXML private Button btnLogin;
 
     @FXML
     public void initialize() {
@@ -42,8 +36,10 @@ public class LoginController {
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
 
+        // 2. VALIDASI INPUT KOSONG DENGAN ALERT POP-UP
         if (username.isEmpty() || password.isEmpty()) {
             lblError.setText("Username dan password tidak boleh kosong!");
+            AlertUtil.showError("Login Gagal", "Input Kosong", "Username dan Password wajib diisi!");
             return;
         }
 
@@ -72,17 +68,26 @@ public class LoginController {
                         session.setNama(loginData.getNama());
                         session.setRole(Role.valueOf(loginData.getRole()));
 
+                        // 3. POP-UP INFORMASI SUKSES LOGIN
+                        AlertUtil.showInfo("Login Berhasil", "Selamat Datang Kembali", "Halo " + loginData.getNama() + ", Anda berhasil masuk sebagai " + loginData.getRole() + ".");
+
                         // Redirect to the role-specific dashboard
                         navigateToDashboard(Role.valueOf(loginData.getRole()));
                     } else {
                         String errMsg = (response != null) ? response.getMessage() : "Gagal tersambung ke backend server.";
                         lblError.setText(errMsg);
+
+                        // 4. POP-UP GAGAL AUTENTIKASI DARI RESPONS SERVER
+                        AlertUtil.showError("Login Gagal", "Autentikasi Ditolak", errMsg);
                     }
                 });
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     btnLogin.setDisable(false);
                     lblError.setText("Koneksi gagal: " + e.getMessage());
+
+                    // 5. POP-UP JIKA SERVER BACKEND BELUM MENYALA / TIMEOUT
+                    AlertUtil.showError("Koneksi Error", "Gagal Terhubung ke Server", "Pastikan server backend HoServe sudah dinyalakan!\nDetail: " + e.getMessage());
                 });
                 e.printStackTrace();
             }

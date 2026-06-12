@@ -1,4 +1,4 @@
-package com.hoserve.util;
+package com.hoserve.client.util;
 
 import com.hoserve.dto.response.*;
 import com.hoserve.entity.*;

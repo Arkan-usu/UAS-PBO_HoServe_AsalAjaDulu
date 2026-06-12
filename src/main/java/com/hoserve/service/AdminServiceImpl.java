@@ -1,5 +1,6 @@
 package com.hoserve.service;
 
+import com.hoserve.client.util.DtoMapper;
 import com.hoserve.dto.request.DokterRequest;
 import com.hoserve.dto.request.PasienRequest;
 import com.hoserve.dto.response.DokterResponse;
@@ -13,7 +14,7 @@ import com.hoserve.exception.ResourceNotFoundException;
 import com.hoserve.repository.DokterRepository;
 import com.hoserve.repository.PasienRepository;
 import com.hoserve.repository.PoliklinikRepository;
-import com.hoserve.util.DtoMapper;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
