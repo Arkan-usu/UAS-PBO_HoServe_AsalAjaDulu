@@ -28,7 +28,7 @@ Pastikan sistem Anda telah terinstal:
 ### Langkah Instalasi
 1. **Clone repositori** ini ke dalam komputer lokal Anda:
    ```bash
-   git clone <url-repositori-anda>
+   git clone https://github.com/Arkan-usu/UAS-PBO_HoServe_AsalAjaDulu.git
    cd UAS-PBO_HoServe_AsalAjaDulu
    ```
 
