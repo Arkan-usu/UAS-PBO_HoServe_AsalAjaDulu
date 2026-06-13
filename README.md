@@ -50,3 +50,8 @@ Pastikan sistem Anda telah terinstal:
 2. Risky Jonalson Silaen (241401010)
 3. Arkaan Ramdhan Rusdi (241401082)
 4. Muhammad Diaz William Bevan (241401088)
+
+---
+## Video Demonstrasi
+▶️ Tonton video penjelasan dan demonstrasi aplikasi kami di YouTube:
+https://youtu.be/9A4XWFyRf00?si=A2yqgvCYXIQJ9B6R
